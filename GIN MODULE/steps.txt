@@ -1,0 +1,7 @@
+# to install gin
+go get -u github.com/gin-gonic/gin
+
+and follow template mentioned above to learn
+
+
+and this GIn folder need to be updated very nicely
