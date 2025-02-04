@@ -1,14 +1,28 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"fmt"
+	"io"
 	"main/funcs"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
 	funcs.INIT(r)
-	r.GET("/ping", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {	
+		fmt.Println("THIS IS GET REQUEST",c.Request.Body)
+		body, _ := io.ReadAll(c.Request.Body)
+		fmt.Println(string(body))
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	})
+
+	r.POST("/", func(c *gin.Context) {	
+		body, _ := io.ReadAll(c.Request.Body)
+		fmt.Println(string(body))
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
